@@ -375,6 +375,7 @@ img { display: block; max-width: 100%; }
     transition: transform .3s, visibility .3s; z-index: -1;
   }
   .nav.is-open { transform: none; visibility: visible; }
+  .header__actions { margin-left: auto; } /* кнопка меню — в правом конце шапки */
   .nav a { padding: 16px 24px; border-top: 1px solid var(--line); }
   .burger { display: block; }
   .masters, .reviews { grid-template-columns: 1fr; }
