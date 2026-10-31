@@ -115,16 +115,6 @@ img { display: block; max-width: 100%; }
 /* кисточка для окрашивания */
 .brush { filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .5)); }
 
-/* соцсети */
-.socials {
-  position: absolute; z-index: 3; right: 32px; top: 50%; transform: translateY(-50%);
-  list-style: none; display: flex; flex-direction: column; gap: 22px;
-}
-.socials a { display: block; width: 24px; height: 24px; color: #fff; transition: color .2s, transform .2s; }
-.socials a:hover { color: var(--gold); transform: scale(1.15); }
-.socials svg { width: 100%; height: 100%; fill: currentColor; }
-.socials svg[fill="none"] { fill: none; }
-
 /* ---------- секции ---------- */
 .section { position: relative; padding: 110px 0; }
 .section::before {
@@ -239,11 +229,11 @@ img { display: block; max-width: 100%; }
 
 /* форма */
 .form {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 22px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 22px;
   max-width: 760px; margin: 44px auto 0; padding: 36px;
   background: var(--card); border: 1px solid var(--line); border-radius: 24px;
 }
-.field { display: grid; gap: 6px; font-size: 14px; color: var(--muted); }
+.field { display: grid; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
 .field--wide { grid-column: 1 / -1; }
 .field input, .field select, .field textarea {
   width: 100%; padding: 13px 16px; border-radius: 12px;
@@ -252,6 +242,12 @@ img { display: block; max-width: 100%; }
   transition: border-color .2s;
 }
 .field textarea { resize: vertical; }
+/* У поля даты на телефонах своя минимальная ширина (особенно Safari на iPhone) — из-за неё оно вылезало за форму */
+.field input[type=date] {
+  display: block; min-width: 0; max-width: 100%; min-height: 50px;
+  -webkit-appearance: none; appearance: none;
+}
+.field input[type=date]::-webkit-date-and-time-value { text-align: left; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); }
 .field.is-error input, .field.is-error textarea { border-color: #ff4d6d; }
 .field__error { min-height: 0; color: #ff8fa3; font-size: 13px; }
@@ -388,10 +384,9 @@ img { display: block; max-width: 100%; }
   .header__inner { gap: 12px; }
   .phone { display: none; }
   .header__actions .btn { display: none; }
-  .socials { right: auto; left: 50%; top: auto; bottom: 24px; transform: translateX(-50%); flex-direction: row; }
-  .hero__content { padding-bottom: 240px; }
+  .hero__content { padding-bottom: 200px; }
   .hero__quote::before, .hero__quote::after { width: 16px; margin: 0 6px; }
-  .form { grid-template-columns: 1fr; padding: 24px 18px; }
+  .form { grid-template-columns: minmax(0, 1fr); padding: 24px 18px; }
   /* на телефоне «Моя запись» — крупная панель во всю ширину, чтобы её точно заметили */
   .my-booking {
     left: 12px; right: 12px; bottom: 12px;
@@ -404,7 +399,6 @@ img { display: block; max-width: 100%; }
     content: "›"; margin-left: auto; font-size: 34px; line-height: 1; opacity: .9;
   }
   .my-booking__count { top: -8px; right: 10px; min-width: 26px; height: 26px; font-size: 14px; }
-  .has-my-booking .socials { bottom: 120px; } /* не прятать соцсети под панелью */
   .has-my-booking .footer { padding-bottom: 120px; }
   .toast { bottom: 120px; }
   .master__body { padding: 20px 20px 28px; }
