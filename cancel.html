@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Отмена записи — Стиль</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lora:wght@600&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cancel-page { min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; }
+    .cancel-card {
+      width: min(460px, 100%); padding: 36px 28px; text-align: center;
+      background: var(--card); border: 1px solid var(--line); border-radius: 24px;
+    }
+    .cancel-card .logo { justify-content: center; margin-bottom: 22px; }
+    .cancel-card h1 { font: 600 26px var(--font-head); margin-bottom: 18px; }
+    .cancel-card dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; text-align: left; margin-bottom: 26px; }
+    .cancel-card dt { color: var(--muted); }
+    .cancel-card .actions { display: grid; gap: 12px; }
+    .cancel-card .status { margin-bottom: 20px; color: var(--muted); }
+    .cancel-card .status--done { color: #ff8fa3; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main class="cancel-page">
+    <div class="cancel-card" id="card">
+      <a href="/" class="logo">
+        <img src="favicon.svg" alt="" width="40" height="40">
+        <span class="logo__name">Стиль</span>
+      </a>
+      <h1>Ваша запись</h1>
+      <p class="status" id="status">Загружаем…</p>
+      <dl id="details" hidden>
+        <dt>Когда</dt><dd id="when"></dd>
+        <dt>Мастер</dt><dd id="master"></dd>
+        <dt>Услуга</dt><dd id="service"></dd>
+      </dl>
+      <div class="actions">
+        <button class="btn btn--ghost" id="cancelBtn" hidden>Отменить запись</button>
+        <a href="/#booking" class="btn btn--grad">На сайт</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const token = new URLSearchParams(location.search).get("token") || "";
+    const statusEl = document.getElementById("status");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    function show(b) {
+      const day = new Date(`${b.date}T00:00`).toLocaleDateString("ru-RU", { day: "numeric", month: "long", weekday: "long" });
+      document.getElementById("when").textContent = `${day}, ${b.start}–${b.end}`;
+      document.getElementById("master").textContent = b.master;
+      document.getElementById("service").textContent = b.service;
+      document.getElementById("details").hidden = false;
+
+      const cancelled = b.status === "cancelled";
+      statusEl.textContent = cancelled ? "Запись отменена" : "Запись активна. Ждём вас!";
+      statusEl.classList.toggle("status--done", cancelled);
+      cancelBtn.hidden = cancelled;
+    }
+
+    fetch(`/api/booking?token=${encodeURIComponent(token)}`)
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        show(data);
+      })
+      .catch((err) => { statusEl.textContent = err.message || "Не удалось загрузить запись"; });
+
+    cancelBtn.addEventListener("click", async () => {
+      if (!confirm("Точно отменить запись?")) return;
+      cancelBtn.disabled = true;
+      try {
+        const res = await fetch("/api/bookings/cancel", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        show(data);
+      } catch (err) {
+        statusEl.textContent = err.message || "Не удалось отменить запись, позвоните нам";
+      } finally {
+        cancelBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

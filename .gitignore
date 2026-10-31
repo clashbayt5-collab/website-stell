@@ -1,0 +1,11 @@
+# Секреты: пароль менеджера и токен Telegram-бота. Пример — в config.example.json
+config.json
+
+# База записей с телефонами клиентов
+data/
+
+# Служебное
+__pycache__/
+*.pyc
+.claude/
+.env

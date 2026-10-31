@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Стиль — парикмахерская в Норильске</title>
+  <meta name="description" content="Парикмахерская «Стиль» в Норильске: женские, мужские и детские стрижки, окрашивание. Советская, 1.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lora:ital,wght@0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="Стиль — на главную">
+        <img src="favicon.svg" alt="" width="40" height="40">
+        <span class="logo__name">Стиль</span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#services">Услуги</a>
+        <a href="#masters">Мастера</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#about">О нас</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="tel:+79131607592" class="phone" data-copy-phone>+7 (913) 160-75-92</a>
+        <a href="#booking" class="btn btn--grad btn--sm">Записаться</a>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Экран 1: главный -->
+  <section class="hero" id="top">
+    <svg class="hero__bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="glow1" cx="20%" cy="20%" r="60%">
+          <stop offset="0" stop-color="#1c0b52"/>
+          <stop offset="1" stop-color="#05030f" stop-opacity="0"/>
+        </radialGradient>
+        <!-- градиенты прядей для каждой палитры добавляются из script.js -->
+        <clipPath id="paintClip">
+          <rect id="paintRect" x="-200" y="0" width="0" height="900"/>
+        </clipPath>
+        <linearGradient id="handle" x1="0" x2="1">
+          <stop offset="0" stop-color="#2a1d5c"/>
+          <stop offset=".5" stop-color="#4b3a8c"/>
+          <stop offset="1" stop-color="#1b1240"/>
+        </linearGradient>
+        <linearGradient id="ferrule" x1="0" x2="1">
+          <stop offset="0" stop-color="#9c97b8"/>
+          <stop offset=".5" stop-color="#ffffff"/>
+          <stop offset="1" stop-color="#8a84aa"/>
+        </linearGradient>
+      </defs>
+      <rect width="1440" height="900" fill="url(#glow1)"/>
+      <path d="M0 120 C 300 60, 520 160, 760 380 S 1180 520, 1440 340 L1440 0 L0 0 Z" fill="#0d0630" opacity=".55"/>
+      <path d="M0 260 C 260 200, 480 300, 700 470 S 1160 560, 1440 430 L1440 900 L0 900 Z" fill="#0a0538" opacity=".55"/>
+      <!-- пряди: нижний слой — текущий цвет, верхний — новый, открывается за кисточкой -->
+      <g id="strandsBase"></g>
+      <g id="strandsPaint" clip-path="url(#paintClip)"></g>
+      <g id="drops"></g>
+
+      <!-- кисточка для окрашивания; кончик щетины — в точке (0, 0) -->
+      <g id="brush" class="brush">
+        <g transform="rotate(32)">
+          <path d="M-2.5 -175 Q0 -184 2.5 -175 L8 -46 L-8 -46 Z" fill="url(#handle)" stroke="#6d5bb5" stroke-width="1"/>
+          <rect x="-13" y="-48" width="26" height="14" rx="3" fill="url(#ferrule)"/>
+          <path d="M-13 -34 L13 -34 L17 -4 Q0 6 -17 -4 Z" fill="#f4f1ff"/>
+          <path id="brushPaint" d="M-15.5 -16 L15.5 -16 L17 -4 Q0 6 -17 -4 Z" fill="#E8167A"/>
+          <path d="M-7 -33 L-9 -3 M0 -33 L0 0 M7 -33 L9 -3" stroke="rgba(0,0,0,.18)" stroke-width="1"/>
+        </g>
+      </g>
+    </svg>
+
+    <div class="hero__content container">
+      <p class="hero__eyebrow">Парикмахерская · Норильск</p>
+      <h1 class="hero__title">Стиль</h1>
+      <p class="hero__lead">Стрижки и окрашивание для всей семьи</p>
+      <div class="hero__buttons">
+        <a href="#services" class="btn btn--grad">Услуги и цены</a>
+        <a href="#masters" class="btn btn--light">Наши мастера</a>
+      </div>
+      <p class="hero__quote">«Не бывает плохой стрижки — бывает не тот мастер»</p>
+    </div>
+
+    <ul class="socials" aria-label="Мы в соцсетях">
+      <li><a href="#" aria-label="ВКонтакте">
+        <svg viewBox="0 0 24 24"><path d="M12.8 17.5c-5.5 0-8.6-3.8-8.7-10h2.8c.1 4.6 2.1 6.5 3.7 6.9V7.5h2.6v3.9c1.6-.2 3.3-2 3.8-3.9h2.6c-.4 2.4-2.2 4.2-3.4 4.9 1.2.6 3.2 2.1 4 5.1h-2.9c-.6-1.9-2.2-3.4-4.1-3.6v3.6h-.4z"/></svg>
+      </a></li>
+      <li><a href="#" aria-label="Telegram">
+        <svg viewBox="0 0 24 24"><path d="M21.4 4.3 2.9 11.4c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.5c.3-1.3-.5-1.8-1.4-1.5zM9.3 14.6l8.9-5.6c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.3-1.7-4.6z"/></svg>
+      </a></li>
+      <li><a href="#" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.2-.6-.5-1-1.1-1.4-1.7-.1-.3 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.4-.9 2.2.1 1 .5 1.9 1.1 2.7 1.1 1.6 2.5 2.9 4.2 3.7.5.2.9.4 1.4.5.6.2 1.1.2 1.7.1.5-.1 1.5-.6 1.7-1.2.2-.4.2-.8.1-1.2l-.4-.2z"/></svg>
+      </a></li>
+      <li><a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+      </a></li>
+    </ul>
+  </section>
+
+  <!-- Экран 2: услуги и цены -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2 class="section__title">Услуги и цены</h2>
+      <p class="section__lead">Цены ориентировочные: точную стоимость мастер назовёт после консультации.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" role="tab" data-tab="women">Женские</button>
+        <button class="tab" role="tab" data-tab="men">Мужские</button>
+        <button class="tab" role="tab" data-tab="kids">Детские</button>
+        <button class="tab" role="tab" data-tab="color">Окрашивание</button>
+      </div>
+
+      <div class="price-grid" id="priceGrid"><!-- заполняется из script.js --></div>
+    </div>
+  </section>
+
+  <!-- Экран 3: мастера -->
+  <section class="section" id="masters">
+    <div class="container">
+      <h2 class="section__title">Наши мастера</h2>
+      <p class="section__lead">Тридцать лет опыта на двоих — и ни одного клиента, ушедшего без улыбки.</p>
+
+      <div class="masters">
+        <article class="master">
+          <div class="master__photo">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Марина Соколова" loading="lazy">
+          </div>
+          <div class="master__body">
+            <h3 class="master__name">Марина Соколова</h3>
+            <p class="master__role">Топ-стилист · колорист</p>
+            <div class="master__stats">
+              <div><b data-count="18">18</b><span>лет стажа</span></div>
+              <div><b data-count="9000">9000</b><span>клиентов</span></div>
+            </div>
+            <ul class="master__facts">
+              <li>Женские стрижки любой длины, сложное окрашивание</li>
+              <li>Обучалась в академиях ESTEL и L'Oréal Professionnel</li>
+              <li>Любимое — превращать «просто подровнять» в «я себя не узнаю!»</li>
+            </ul>
+            <blockquote class="master__quote">«Подберу цвет, который будет вашим, а не модным на один сезон».</blockquote>
+          </div>
+        </article>
+
+        <article class="master">
+          <div class="master__photo">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ольга Белова" loading="lazy">
+          </div>
+          <div class="master__body">
+            <h3 class="master__name">Ольга Белова</h3>
+            <p class="master__role">Мастер-универсал · барбер</p>
+            <div class="master__stats">
+              <div><b data-count="12">12</b><span>лет стажа</span></div>
+              <div><b data-count="10000">10000</b><span>стрижек</span></div>
+            </div>
+            <ul class="master__facts">
+              <li>Мужские и детские стрижки, фейды, оформление бороды</li>
+              <li>Находит подход даже к самым непоседливым малышам</li>
+              <li>Победитель городского конкурса парикмахеров</li>
+            </ul>
+            <blockquote class="master__quote">«Ребёнок должен уйти с улыбкой, а папа — с идеальным фейдом».</blockquote>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Экран 4: отзывы (превью) -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <h2 class="section__title">Что говорят клиенты</h2>
+      <div class="rating">
+        <span class="rating__value">5.0</span>
+        <span class="rating__stars" aria-label="5 звёзд из 5">★★★★★</span>      </div>
+
+      <!-- ПРИМЕРЫ отзывов для макета: перед запуском заменить на настоящие -->
+      <div class="reviews">
+        <article class="review">
+          <header class="review__head">
+            <img class="review__avatar" src="https://randomuser.me/api/portraits/women/33.jpg" alt="" loading="lazy">
+            <div>
+              <h3 class="review__name">Екатерина М.</h3>
+              <p class="review__meta">Сложное окрашивание · мастер Марина</p>
+            </div>
+          </header>
+          <div class="review__stars" aria-label="5 звёзд">★★★★★</div>
+          <p class="review__text">Хотела из тёмного в светлый и очень боялась сжечь волосы. Марина сразу честно сказала, что за один раз не выйдет, сделали в два захода. Волосы живые, не путаются, цвет держится уже месяц. Теперь только к ней.</p>
+          <time class="review__date" datetime="2026-10-12">12 октября 2026</time>
+        </article>
+
+        <article class="review">
+          <header class="review__head">
+            <img class="review__avatar" src="https://randomuser.me/api/portraits/men/46.jpg" alt="" loading="lazy">
+            <div>
+              <h3 class="review__name">Андрей К.</h3>
+              <p class="review__meta">Стрижка + борода · мастер Ольга</p>
+            </div>
+          </header>
+          <div class="review__stars" aria-label="5 звёзд">★★★★★</div>
+          <p class="review__text">Ходим к Ольге с сыном уже полгода. Раньше он в парикмахерской ревел, а тут сидит спокойно, смотрит мультики. Мне фейд делает аккуратно, без ступенек. Единственное — на вечер записываться лучше заранее, окна быстро разбирают.</p>
+          <time class="review__date" datetime="2026-10-03">3 октября 2026</time>
+        </article>
+
+        <article class="review">
+          <header class="review__head">
+            <img class="review__avatar" src="https://randomuser.me/api/portraits/women/79.jpg" alt="" loading="lazy">
+            <div>
+              <h3 class="review__name">Наталья В.</h3>
+              <p class="review__meta">Женская стрижка · мастер Марина</p>
+            </div>
+          </header>
+          <div class="review__stars" aria-label="5 звёзд">★★★★★</div>
+          <p class="review__text">Переехала в Норильск и долго не могла найти своего мастера. Пришла с отросшим каре — подстригли быстро и по делу, ещё подсказали, как укладывать, чтобы под шапкой не мялось. Цены адекватные, предложили чай.</p>
+          <time class="review__date" datetime="2026-09-21">21 сентября 2026</time>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Запись -->
+  <section class="section" id="booking">
+    <div class="container">
+      <h2 class="section__title">Записаться</h2>
+      <p class="section__lead">Выберите услугу и свободное время — оно сразу закрепится за вами.</p>
+
+      <form class="form" id="bookingForm" novalidate>
+        <label class="field">
+          <span>Ваше имя *</span>
+          <input type="text" name="name" required autocomplete="name" maxlength="60" placeholder="Анна">
+          <small class="field__error" aria-live="polite"></small>
+        </label>
+        <label class="field">
+          <span>Телефон *</span>
+          <input type="tel" name="phone" required autocomplete="tel" maxlength="22" placeholder="+7 (913) 160-75-92">
+          <small class="field__error" aria-live="polite"></small>
+        </label>
+        <label class="field">
+          <span>Услуга</span>
+          <select name="service" id="serviceSelect"></select>
+          <small class="field__hint" id="serviceHint" hidden>📞 Наш менеджер перезвонит вам для уточнения деталей и цены.</small>
+        </label>
+        <label class="field">
+          <span>Мастер</span>
+          <select name="master" id="masterSelect">
+            <option value="any">Любой мастер</option>
+            <option value="marina">Марина Соколова</option>
+            <option value="olga">Ольга Белова</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Дата</span>
+          <input type="date" name="date" id="dateInput" required>
+        </label>
+        <label class="field">
+          <span>Время</span>
+          <select name="time" id="timeSelect" required disabled>
+            <option>Загружаем…</option>
+          </select>
+        </label>
+        <p class="form__note field--wide" id="slotNote" aria-live="polite"></p>
+        <label class="field field--wide">
+          <span>Комментарий</span>
+          <textarea name="comment" rows="3" maxlength="500" placeholder="Например: хочу каре до плеч"></textarea>
+          <small class="field__error" aria-live="polite"></small>
+        </label>
+        <!-- ловушка для спам-ботов: человек это поле не видит -->
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="btn btn--grad field--wide">Записаться</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- О нас и контакты -->
+  <footer class="footer" id="about">
+    <div class="container footer__grid">
+      <div>
+        <a href="#top" class="logo">
+          <img src="favicon.svg" alt="" width="40" height="40">
+          <span class="logo__name">Стиль</span>
+        </a>
+        <p class="footer__about">Уютная парикмахерская в центре Норильска. Стрижём мам, пап, бабушек и самых маленьких — бережно, внимательно и красиво.</p>
+      </div>
+      <div class="footer__contacts">
+        <h3>Контакты</h3>
+        <p>г. Норильск, ул. Советская, 1</p>
+        <p><a href="tel:+79131607592" data-copy-phone>+7 (913) 160-75-92</a></p>
+        <p>Ежедневно 10:00 – 20:00</p>
+        <a href="#booking" class="btn btn--grad btn--sm">Записаться</a>
+      </div>
+      <div class="footer__map">
+        <iframe src="https://yandex.ru/map-widget/v1/?text=%D0%9D%D0%BE%D1%80%D0%B8%D0%BB%D1%8C%D1%81%D0%BA%2C%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D1%81%D0%BA%D0%B0%D1%8F%2C%201&z=16" title="Карта: Норильск, Советская, 1" loading="lazy"></iframe>
+      </div>
+    </div>
+    <p class="footer__copy">© 2026 Парикмахерская «Стиль»</p>
+  </footer>
+
+  <!-- Окно «успешно записались» -->
+  <div class="modal" id="successModal" hidden>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal__icon">✓</div>
+      <h3 id="modalTitle">Успешно, вы записались!</h3>
+      <p id="modalText"></p>
+      <p class="modal__callback" id="modalCallback" hidden>📞 Наш менеджер перезвонит вам для уточнения деталей и цены.</p>
+      <button class="btn btn--grad" id="modalClose">Отлично</button>
+    </div>
+  </div>
+
+  <!-- «Моя запись»: видна, пока у клиента есть предстоящая запись -->
+  <button type="button" class="my-booking" id="myBookingBtn" hidden>
+    <span class="my-booking__icon" aria-hidden="true">✂</span>
+    <span class="my-booking__text"><b>Моя запись</b><span id="myBookingWhen"></span></span>
+    <span class="my-booking__count" id="myBookingCount" hidden></span>
+  </button>
+
+  <div class="modal" id="myBookingsModal" hidden>
+    <div class="modal__box modal__box--list" role="dialog" aria-modal="true" aria-labelledby="myTitle">
+      <button type="button" class="modal__x" data-close aria-label="Закрыть">×</button>
+      <h3 id="myTitle">Ваши записи</h3>
+      <p id="myHello"></p>
+      <div class="my-list" id="myList"></div>
+      <div class="modal__actions">
+        <a href="#booking" class="btn btn--grad" data-close>Записаться ещё</a>
+      </div>
+      <button type="button" class="link-btn" id="forgetMe">Это не я — забыть мои данные на этом устройстве</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "categories": {
+    "women": "Женские",
+    "men": "Мужские",
+    "kids": "Детские",
+    "color": "Окрашивание"
+  },
+  "services": [
+    { "id": "consult", "category": null, "name": "Консультация, не знаю что выбрать", "desc": "", "price": null, "duration": 30 },
+
+    { "id": "w-short", "category": "women", "name": "Стрижка, короткие волосы", "desc": "Пикси, боб, короткое каре — форма, которая держится без укладки.", "price": 1800, "duration": 60 },
+    { "id": "w-medium", "category": "women", "name": "Стрижка, средние волосы", "desc": "Каре, лонг-боб, каскад до плеч.", "price": 2200, "duration": 60 },
+    { "id": "w-long", "category": "women", "name": "Стрижка, длинные волосы", "desc": "Каскад, лесенка или ровный срез ниже лопаток.", "price": 2600, "duration": 90 },
+    { "id": "w-trim", "category": "women", "name": "Подравнивание кончиков", "desc": "Освежим форму и уберём сечение, сохранив длину.", "price": 1000, "duration": 30 },
+    { "id": "w-bangs", "category": "women", "name": "Стрижка чёлки", "desc": "Прямая, рваная, шторка — подберём под овал лица.", "price": 400, "duration": 30 },
+    { "id": "w-styling", "category": "women", "name": "Укладка", "desc": "Локоны, объём или гладкая укладка на праздник.", "price": 1500, "from": true, "duration": 60 },
+
+    { "id": "m-classic", "category": "men", "name": "Классическая стрижка", "desc": "Аккуратная стрижка ножницами и машинкой.", "price": 1200, "duration": 60 },
+    { "id": "m-fade", "category": "men", "name": "Модельная стрижка / фейд", "desc": "Плавные переходы, текстура, укладка в подарок.", "price": 1500, "duration": 60 },
+    { "id": "m-clipper", "category": "men", "name": "Стрижка машинкой", "desc": "Одна или две насадки — быстро и чисто.", "price": 800, "duration": 30 },
+    { "id": "m-beard", "category": "men", "name": "Оформление бороды", "desc": "Форма, контур, уход маслом.", "price": 700, "duration": 30 },
+    { "id": "m-combo", "category": "men", "name": "Стрижка + борода", "desc": "Полный образ за один визит.", "price": 1900, "duration": 90 },
+
+    { "id": "k-boy", "category": "kids", "name": "Стрижка для мальчика", "desc": "До 12 лет. Мультики и терпение прилагаются.", "price": 900, "duration": 30 },
+    { "id": "k-girl", "category": "kids", "name": "Стрижка для девочки", "desc": "До 12 лет. Подравнивание или модельная форма.", "price": 1100, "duration": 30 },
+    { "id": "k-first", "category": "kids", "name": "Первая стрижка малыша", "desc": "Бережно, без спешки, с локоном на память.", "price": 700, "duration": 30 },
+    { "id": "k-party", "category": "kids", "name": "Праздничная причёска", "desc": "Косы и пучки к утреннику или 1 сентября.", "price": 800, "from": true, "duration": 60 },
+
+    { "id": "c-single", "category": "color", "name": "Окрашивание в один тон", "desc": "Ровный насыщенный цвет по всей длине.", "price": null, "duration": 120 },
+    { "id": "c-roots", "category": "color", "name": "Окрашивание корней", "desc": "Обновим цвет у отросших корней.", "price": null, "duration": 90 },
+    { "id": "c-highlights", "category": "color", "name": "Мелирование", "desc": "Классическое или тонкое — для лёгкости и объёма.", "price": null, "duration": 150 },
+    { "id": "c-complex", "category": "color", "name": "Сложное окрашивание", "desc": "Балаяж, шатуш, airtouch — мягкие переходы цвета.", "price": null, "duration": 240 },
+    { "id": "c-toning", "category": "color", "name": "Тонирование", "desc": "Убираем желтизну, добавляем блеск и глубину.", "price": null, "duration": 60 }
+  ]
+}

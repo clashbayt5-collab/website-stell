@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Записи — Стиль</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lora:wght@600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+  <header class="admin__top">
+    <div class="container admin__top-inner">
+      <a href="/" class="logo">
+        <img src="favicon.svg" alt="" width="36" height="36">
+        <span class="logo__name">Стиль</span>
+      </a>
+      <span class="admin__title">Записи клиентов</span>
+      <span class="admin__updated" id="updated"></span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Расписание на день -->
+    <section class="panel">
+      <div class="panel__head">
+        <h2>Расписание на день</h2>
+        <div class="day-nav">
+          <button class="icon-btn" id="prevDay" aria-label="Предыдущий день">‹</button>
+          <input type="date" id="dayInput">
+          <button class="icon-btn" id="nextDay" aria-label="Следующий день">›</button>
+          <button class="chip" id="todayBtn">Сегодня</button>
+        </div>
+      </div>
+      <p class="day-summary" id="daySummary"></p>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <!-- Все записи -->
+    <section class="panel">
+      <div class="panel__head">
+        <h2>Все записи</h2>
+        <div class="filters">
+          <select id="periodFilter">
+            <option value="today">Сегодня</option>
+            <option value="tomorrow">Завтра</option>
+            <option value="week">7 дней</option>
+            <option value="upcoming" selected>Все будущие</option>
+          </select>
+          <select id="masterFilter">
+            <option value="">Все мастера</option>
+          </select>
+          <input type="search" id="search" placeholder="Имя или телефон">
+          <label class="check"><input type="checkbox" id="showCancelled"> отменённые</label>
+        </div>
+      </div>
+      <p class="day-summary" id="tableSummary"></p>
+      <div class="table-wrap">
+        <table class="bookings">
+          <thead>
+            <tr>
+              <th>№</th><th>Дата</th><th>Время</th><th>Мастер</th><th>Клиент</th>
+              <th>Телефон</th><th>Услуга</th><th>Комментарий</th><th>Статус</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "admin_password": "придумайте-надёжный-пароль",
+  "telegram": {
+    "bot_token": "токен от @BotFather",
+    "chat_id": "id чата, куда слать уведомления"
+  },
+  "port": 5500
+}
