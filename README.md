@@ -40,6 +40,7 @@ python server.py
 | `TELEGRAM_CHAT_ID` | куда слать уведомления (узнать: `python server.py telegram-chats`) |
 | `PORT` | порт (хостинги обычно задают сами) |
 | `DATA_DIR` | папка для базы записей — на хостинге укажите постоянный диск |
+| `TRUST_PROXY` | `1`, если перед сервером прокси хостинга (Render, Caddy) — чтобы различать посетителей по IP |
 
 Проверить бота: `python server.py telegram-test`
 
@@ -87,7 +88,16 @@ stil-norilsk.ru {
 }
 ```
 
-### Вариант 2 — Render.com / Railway
+### Бесплатный показ — Render.com (Free)
+
+В репозитории есть `render.yaml`: на render.com → **New → Blueprint** → этот репозиторий →
+впишите `ADMIN_PASSWORD`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` → **Apply**.
+
+Ограничения бесплатного тарифа: через 15 минут без посетителей сайт засыпает
+(первое открытие потом — 30–60 секунд), а записи **стираются** при засыпании и обновлении.
+Для показа — нормально, для работы — нужен вариант с постоянным диском.
+
+### Вариант 2 — Render.com / Railway с постоянным диском
 
 - Start command: `python server.py`
 - Переменные окружения: `ADMIN_PASSWORD`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`

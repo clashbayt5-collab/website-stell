@@ -398,6 +398,13 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", "0")
         self.end_headers()
 
+    def client_ip(self):
+        # за прокси хостинга (TRUST_PROXY=1) все запросы приходят с его адреса — настоящий в X-Forwarded-For
+        forwarded = self.headers.get("X-Forwarded-For")
+        if os.environ.get("TRUST_PROXY") and forwarded:
+            return forwarded.split(",")[0].strip()
+        return self.client_address[0]
+
     def is_public(self, path):
         if path == "/":
             return True
@@ -512,7 +519,7 @@ class Handler(SimpleHTTPRequestHandler):
         if service_id not in SERVICES or (master != "any" and master not in MASTERS) or not day or start is None:
             return self.error(400, "Некорректные данные")
 
-        ip = self.client_address[0]
+        ip = self.client_ip()
         now = time.time()
         if now - last_booking_at.get(ip, 0) < BOOKING_COOLDOWN_SEC:
             return self.error(429, "Подождите немного перед следующей записью")

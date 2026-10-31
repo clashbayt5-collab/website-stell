@@ -1,0 +1,21 @@
+# Бесплатный показ на Render.com: New → Blueprint → этот репозиторий.
+# На бесплатном тарифе диск временный: записи стираются, когда сервис засыпает (15 мин без посетителей).
+services:
+  - type: web
+    name: website-stell
+    runtime: python
+    plan: free
+    buildCommand: echo "Сторонние библиотеки не нужны"
+    startCommand: python server.py
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: TRUST_PROXY        # Render стоит перед сервером: IP клиента берём из X-Forwarded-For
+        value: "1"
+      - key: ADMIN_PASSWORD     # спросит при создании
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
