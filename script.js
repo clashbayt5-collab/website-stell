@@ -24,6 +24,33 @@ nav.addEventListener("click", (e) => {
   }
 });
 
+// ---------- появление блоков снизу при прокрутке ----------
+const revealItems = document.querySelectorAll(
+  ".section__title, .section__lead, .tabs, .master, .rating, .review, .form, .footer__grid > div"
+);
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.add("is-visible");
+      revealObserver.unobserve(el);
+      // после появления возвращаем блоку его собственные переходы (наведение на отзывы)
+      el.addEventListener("transitionend", () => {
+        el.classList.remove("reveal", "is-visible");
+        el.style.removeProperty("--reveal-delay");
+      }, { once: true });
+    });
+  }, { rootMargin: "0px 0px -10% 0px" });
+  revealItems.forEach((el) => {
+    // соседние карточки выезжают по очереди
+    const i = [...el.parentElement.children].filter((c) => c.matches(".master, .review, .footer__grid > div")).indexOf(el);
+    if (i > 0) el.style.setProperty("--reveal-delay", `${i * 0.12}s`);
+    el.classList.add("reveal");
+    revealObserver.observe(el);
+  });
+}
+
 // Пункты меню: две грани для переворота вверх
 document.querySelectorAll(".nav a").forEach((a) => {
   const text = a.textContent.trim();
