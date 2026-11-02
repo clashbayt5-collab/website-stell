@@ -9,9 +9,9 @@
   --pink: #E8167A;
   --grad: linear-gradient(135deg, var(--gold), var(--pink));
   --radius: 18px;
-  --font-brand: "Montserrat", system-ui, sans-serif;
-  --font-head: "Montserrat", system-ui, sans-serif;
-  --font-body: "Montserrat", system-ui, sans-serif;
+  --font-brand: "Cormorant Garamond", Georgia, serif;
+  --font-head: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Cormorant Garamond", Georgia, serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,6 +20,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
+  font-weight: 500;
   line-height: 1.6;
   overflow-x: hidden;
 }
